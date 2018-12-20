@@ -84,6 +84,17 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
  testRunner.Then("Navigate To Women Summer Dress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Qunatity",
+                        "Size"});
+            table1.AddRow(new string[] {
+                        "2",
+                        "M"});
+#line 7
+ testRunner.Then("Pick a Dress And Choose Size and Qunatity", ((string)(null)), table1, "Then ");
+#line 10
+ testRunner.Then("Add To Cart And Proceed Checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             this.ScenarioCleanup();
         }
     }

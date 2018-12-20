@@ -1,18 +1,32 @@
 ﻿using automationpractice.Pages;
+using automationpractice.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace automationpractice.Steps
 {
     [Binding]
     public sealed class Shopping
     {
-        // For additional details on SpecFlow step definitions see http://go.specflow.org/doc-stepdef
+       
+       //Concept Used Context Injection
+        
 
         public HomePage ObjHomePage = new HomePage();
+        public WomenDresses ObjWomenDresses = new WomenDresses();
+        public CheckoutPage ObjCheckoutPage = new CheckoutPage();
+        public CartSummary ObjCartSummary = new CartSummary();
+
+        public readonly Properties Dressdetails;
+
+        public Shopping(Properties prop)
+        {
+            this.Dressdetails = prop;
+        }
 
         [Given(@"Launch Shopping Portal")]
         public void GivenLaunchShoppingPortal()
@@ -24,6 +38,33 @@ namespace automationpractice.Steps
         public void ThenNavigateToWomenSummerDress()
         {
             ObjHomePage.NavigateToWomenSummerDress();
+        }
+
+        [Then(@"Pick a Dress And Choose Size and Qunatity")]
+        public void ThenPickADressAndChooseSizeAndQunatity(Table table)
+        {
+            var data = table.CreateDynamicSet();
+
+            foreach (var item in data)
+            {
+                Dressdetails.Qunatity = (int)item.Qunatity;
+                Dressdetails.Size = (string)item.Size;
+
+            }
+
+            Console.WriteLine("Dressdetails.Qunatity = "+ Dressdetails.Qunatity);
+            Console.WriteLine("Dressdetails.Size =  " + Dressdetails.Size);
+
+            ObjWomenDresses.SelectADress();
+            ObjWomenDresses.EnterQunatityAndSize(Convert.ToString(Dressdetails.Qunatity), Dressdetails.Size);
+        }
+
+
+        [Then(@"Add To Cart And Proceed Checkout")]
+        public void ThenAddToCartAndProceedCheckout()
+        {
+            ObjCheckoutPage.AddToCartandProceedToCheckout();
+            ObjCartSummary.proceedToCheckout();
         }
 
 

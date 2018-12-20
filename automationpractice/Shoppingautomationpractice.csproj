@@ -96,6 +96,7 @@
     <Compile Include="Utilities\CustomLibrary.cs" />
     <Compile Include="Utilities\Generic.cs" />
     <Compile Include="Utilities\Hooks.cs" />
+    <Compile Include="Utilities\Properties.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

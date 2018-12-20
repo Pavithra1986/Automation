@@ -10,5 +10,6 @@ namespace automationpractice.Utilities
     public class Generic
     {
         public static IWebDriver driver { get; set; }
+
     }
 }

@@ -13,6 +13,7 @@ namespace automationpractice.Utilities
 
         public static void EnterText(this IWebElement element, string value)
         {
+            element.Clear();
             element.SendKeys(value);
         }
 
