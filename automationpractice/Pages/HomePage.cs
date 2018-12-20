@@ -14,7 +14,7 @@ namespace automationpractice.Pages
         /* Concepts Used
         * 1. FindBy
         * 2. Used Extensive Custome Methods
-        * 3. Page Navigation
+        * 
         * */
 
         [FindsBy(How = How.XPath, Using = "//*[@id='block_top_menu']//a[contains(text(),'Women')]")]
@@ -34,7 +34,7 @@ namespace automationpractice.Pages
         public void LaunchShoppingPortal()
         {
             Generic.driver.Navigate().GoToUrl("http://automationpractice.com/index.php");
-            Generic.driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(8);
+            Generic.driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
         public void NavigateToWomenSummerDress()

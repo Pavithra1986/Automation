@@ -10,7 +10,7 @@ Scenario: Shop Women Summer Dress
  Then Add To Cart And Proceed Checkout
  Then Create Account
  | Email         | Title | Firstname | LastName | Password | Address                  | City         | State        | PostalCode | MobilePhone             | AddressReference     |
- | Pavi2@gmail.com | Mrs   |Pavithra   |Jai       |pavi.hari |   13D Watson Avenue      |     Auckland |  Indiana     | 12345      |   4534567891011          |       Pavi           |
+ | 1Pavithra@gmail.com | Mrs   |Pavithra   |Jai       |pavi.hari |   13D Watson Avenue      |     Auckland |  Indiana     | 12345      |   4534567891011          |       Pavi           |
  Then Name and Address Verification
  Then Continue With Shipping
  Then Payment And Submit

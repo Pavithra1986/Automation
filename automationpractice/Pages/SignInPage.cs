@@ -81,9 +81,15 @@ namespace automationpractice.Pages
 
         public void createAnAccount(string EmailAddress)
         {
-            
-                EnterEmailAddress.EnterText(EmailAddress);
-                CreateAccount.Clicks();
+
+            Random rnd = new Random();
+
+            String card = Convert.ToString(rnd.Next(100));
+
+            EmailAddress = card + EmailAddress;
+
+            EnterEmailAddress.EnterText(EmailAddress);
+            CreateAccount.Clicks();
            
         }
 

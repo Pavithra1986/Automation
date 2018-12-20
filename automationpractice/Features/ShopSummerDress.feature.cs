@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "MobilePhone",
                         "AddressReference"});
             table2.AddRow(new string[] {
-                        "Pavi2@gmail.com",
+                        "1Pavithra@gmail.com",
                         "Mrs",
                         "Pavithra",
                         "Jai",
