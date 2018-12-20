@@ -21,7 +21,15 @@ namespace automationpractice.Pages
 
         public void proceedToCheckout()
         {
-            proceedCheckout.Clicks();
+            try
+            {
+                proceedCheckout.Clicks();
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
         }
     }
 }

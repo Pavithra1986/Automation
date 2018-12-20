@@ -14,8 +14,7 @@ namespace automationpractice.Pages
 
         [FindsBy(How = How.Name, Using = "Submit")]
         public IWebElement AddToCart { get; set; }
-
-        //a[contains(@title,'Proceed to checkout')]
+        
 
         [FindsBy(How = How.PartialLinkText, Using = "Proceed to checkout")]
         public IWebElement ProceedToCheckOut { get; set; }
@@ -28,8 +27,16 @@ namespace automationpractice.Pages
 
         public void AddToCartandProceedToCheckout()
         {
-            AddToCart.Clicks();
-            ProceedToCheckOut.Clicks();
+            try
+            {
+                AddToCart.Clicks();
+                ProceedToCheckOut.Clicks();
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
 
         }
     }

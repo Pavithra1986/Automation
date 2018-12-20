@@ -28,15 +28,31 @@ namespace automationpractice.Pages
 
         public void SelectADress()
         {
-            SelectAProduct.Clicks();
+            try
+            {
+
+                SelectAProduct.Clicks();
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
         }
 
         public void EnterQunatityAndSize(string Count, string Size)
         {
 
-            Qunatity.EnterText(Count);
-            SelectSize.SelectDropDownValue(Size);
+            try
+            {
+                Qunatity.EnterText(Count);
+                SelectSize.SelectDropDownValue(Size);
+            }
+            catch (Exception)
+            {
 
+                throw new Exception();
+            }
 
         }
     }

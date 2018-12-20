@@ -95,6 +95,33 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.Then("Add To Cart And Proceed Checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Title",
+                        "Firstname",
+                        "LastName",
+                        "Password",
+                        "Address",
+                        "City",
+                        "State",
+                        "PostalCode",
+                        "MobilePhone",
+                        "AddressReference"});
+            table2.AddRow(new string[] {
+                        "Jai@gmail.com",
+                        "Mrs",
+                        "Pavithra",
+                        "Jai",
+                        "pavi.hari",
+                        "13D Watson Avenue",
+                        "Auckland",
+                        "Indiana",
+                        "12345",
+                        "4534567891011",
+                        "Pavi"});
+#line 11
+ testRunner.Then("Create Account", ((string)(null)), table2, "Then ");
+#line hidden
             this.ScenarioCleanup();
         }
     }

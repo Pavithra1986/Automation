@@ -39,11 +39,19 @@ namespace automationpractice.Pages
 
         public void NavigateToWomenSummerDress()
         {
-            //Clicks is a Extensive Custome control. Located Under utilites Folder CustomLibrary class
+            //Clicks() is a Extensive Custome control. Located Under utilites Folder CustomLibrary class
 
-            WomenSection.Clicks();
-            CasualDress.Clicks();
-            SummerDress.Clicks();
+            try
+            {
+                WomenSection.Clicks();
+                CasualDress.Clicks();
+                SummerDress.Clicks();
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
         }
 
 

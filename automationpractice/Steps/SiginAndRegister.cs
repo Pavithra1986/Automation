@@ -1,42 +1,59 @@
-﻿using System;
+﻿using automationpractice.Pages;
+using automationpractice.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace automationpractice.Steps
 {
     [Binding]
     public sealed class SiginAndRegister
     {
-        // For additional details on SpecFlow step definitions see http://go.specflow.org/doc-stepdef
+        public SignInPage ObjSignInPage = new SignInPage();
 
-        [Given("I have entered (.*) into the calculator")]
-        public void GivenIHaveEnteredSomethingIntoTheCalculator(int number)
+        public readonly Properties ObjEmail;
+
+        public SiginAndRegister(Properties prop)
         {
-            //TODO: implement arrange (precondition) logic
-            // For storing and retrieving scenario-specific data see http://go.specflow.org/doc-sharingdata 
-            // To use the multiline text or the table argument of the scenario,
-            // additional string/Table parameters can be defined on the step definition
-            // method. 
-
-            ScenarioContext.Current.Pending();
+            this.ObjEmail = prop;
         }
 
-        [When("I press add")]
-        public void WhenIPressAdd()
+        [Then(@"Create Account")]
+        public void ThenCreateAccount(Table table)
         {
-            //TODO: implement act (action) logic
+            try
+            {
+                var data = table.CreateDynamicSet();              
 
-            ScenarioContext.Current.Pending();
+                foreach (var item in data)
+                {
+                    ObjEmail.Email = (string)item.Email;
+                    ObjEmail.Title = (string)item.Title;
+                    ObjEmail.Firstname = (string)item.Firstname;
+                    ObjEmail.LastName = (string)item.LastName;
+                    ObjEmail.Password = (string)item.Password;
+                    ObjEmail.Address = (string)item.Address;
+                    ObjEmail.City = (string)item.City;
+                    ObjEmail.State = (string)item.State;
+                    ObjEmail.PostalCode = (int)item.PostalCode;
+                    ObjEmail.MobilePhone = (Int64)item.MobilePhone;
+                    ObjEmail.AddressReference = (string)item.AddressReference;
+
+                }
+               
+                ObjSignInPage.createAnAccount(ObjEmail.Email);
+                ObjSignInPage.EnterDetailsForResgistration(ObjEmail.Firstname, ObjEmail.LastName, ObjEmail.Password, ObjEmail.Address, ObjEmail.City, ObjEmail.State, Convert.ToString(ObjEmail.PostalCode), Convert.ToString(ObjEmail.MobilePhone), ObjEmail.AddressReference);
+
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
         }
 
-        [Then("the result should be (.*) on the screen")]
-        public void ThenTheResultShouldBe(int result)
-        {
-            //TODO: implement assert (verification) logic
-
-            ScenarioContext.Current.Pending();
-        }
     }
 }

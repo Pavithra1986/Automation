@@ -43,20 +43,28 @@ namespace automationpractice.Steps
         [Then(@"Pick a Dress And Choose Size and Qunatity")]
         public void ThenPickADressAndChooseSizeAndQunatity(Table table)
         {
-            var data = table.CreateDynamicSet();
-
-            foreach (var item in data)
+            try
             {
-                Dressdetails.Qunatity = (int)item.Qunatity;
-                Dressdetails.Size = (string)item.Size;
+                var data = table.CreateDynamicSet();
 
+                foreach (var item in data)
+                {
+                    Dressdetails.Qunatity = (int)item.Qunatity;
+                    Dressdetails.Size = (string)item.Size;
+
+                }
+
+                Console.WriteLine("Dressdetails.Qunatity = " + Dressdetails.Qunatity);
+                Console.WriteLine("Dressdetails.Size =  " + Dressdetails.Size);
+
+                ObjWomenDresses.SelectADress();
+                ObjWomenDresses.EnterQunatityAndSize(Convert.ToString(Dressdetails.Qunatity), Dressdetails.Size);
             }
+            catch (Exception)
+            {
 
-            Console.WriteLine("Dressdetails.Qunatity = "+ Dressdetails.Qunatity);
-            Console.WriteLine("Dressdetails.Size =  " + Dressdetails.Size);
-
-            ObjWomenDresses.SelectADress();
-            ObjWomenDresses.EnterQunatityAndSize(Convert.ToString(Dressdetails.Qunatity), Dressdetails.Size);
+                throw new Exception();
+            }
         }
 
 
@@ -67,6 +75,6 @@ namespace automationpractice.Steps
             ObjCartSummary.proceedToCheckout();
         }
 
-
+        
     }
 }

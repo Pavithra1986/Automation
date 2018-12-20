@@ -8,4 +8,8 @@ Scenario: Shop Women Summer Dress
  | Qunatity | Size  |
  | 2        | M |
  Then Add To Cart And Proceed Checkout
-# Then Create Account
+ Then Create Account
+ | Email         | Title | Firstname | LastName | Password | Address                  | City         | State        | PostalCode | MobilePhone             | AddressReference     |
+ | Jai@gmail.com | Mrs   |Pavithra   |Jai       |pavi.hari |   13D Watson Avenue      |     Auckland |  Indiana     | 12345      |   4534567891011          |       Pavi           |
+
+
