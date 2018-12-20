@@ -81,6 +81,8 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 5
  testRunner.Given("Launch Shopping Portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+ testRunner.Then("Navigate To Women Summer Dress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

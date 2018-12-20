@@ -17,8 +17,15 @@ namespace automationpractice.Steps
         [Given(@"Launch Shopping Portal")]
         public void GivenLaunchShoppingPortal()
         {
-            ObjHomePage.
+            ObjHomePage.LaunchShoppingPortal();
         }
+
+        [Then(@"Navigate To Women Summer Dress")]
+        public void ThenNavigateToWomenSummerDress()
+        {
+            ObjHomePage.NavigateToWomenSummerDress();
+        }
+
 
     }
 }
