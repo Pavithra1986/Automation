@@ -21,7 +21,7 @@ namespace automationpractice.Utilities
         [AfterScenario]
         public void AfterScenario()
         {
-            //TODO: implement logic that has to run after executing each scenario
+            Generic.driver.Quit();
         }
     }
 }

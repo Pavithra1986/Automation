@@ -24,36 +24,43 @@ namespace automationpractice.Steps
         [Then(@"Create Account")]
         public void ThenCreateAccount(Table table)
         {
-            try
+
+            var data = table.CreateDynamicSet();
+
+            foreach (var item in data)
             {
-                var data = table.CreateDynamicSet();              
-
-                foreach (var item in data)
-                {
-                    ObjEmail.Email = (string)item.Email;
-                    ObjEmail.Title = (string)item.Title;
-                    ObjEmail.Firstname = (string)item.Firstname;
-                    ObjEmail.LastName = (string)item.LastName;
-                    ObjEmail.Password = (string)item.Password;
-                    ObjEmail.Address = (string)item.Address;
-                    ObjEmail.City = (string)item.City;
-                    ObjEmail.State = (string)item.State;
-                    ObjEmail.PostalCode = (int)item.PostalCode;
-                    ObjEmail.MobilePhone = (Int64)item.MobilePhone;
-                    ObjEmail.AddressReference = (string)item.AddressReference;
-
-                }
-               
-                ObjSignInPage.createAnAccount(ObjEmail.Email);
-                ObjSignInPage.EnterDetailsForResgistration(ObjEmail.Firstname, ObjEmail.LastName, ObjEmail.Password, ObjEmail.Address, ObjEmail.City, ObjEmail.State, Convert.ToString(ObjEmail.PostalCode), Convert.ToString(ObjEmail.MobilePhone), ObjEmail.AddressReference);
+                ObjEmail.Email = (string)item.Email;
+                ObjEmail.Title = (string)item.Title;
+                ObjEmail.Firstname = (string)item.Firstname;
+                ObjEmail.LastName = (string)item.LastName;
+                ObjEmail.Password = (string)item.Password;
+                ObjEmail.Address = (string)item.Address;
+                ObjEmail.City = (string)item.City;
+                ObjEmail.State = (string)item.State;
+                ObjEmail.PostalCode = (int)item.PostalCode;
+                ObjEmail.MobilePhone = (Int64)item.MobilePhone;
+                ObjEmail.AddressReference = (string)item.AddressReference;
 
             }
-            catch (Exception)
-            {
 
-                throw new Exception();
-            }
+            ObjSignInPage.createAnAccount(ObjEmail.Email);
+            ObjSignInPage.EnterDetailsForResgistration(ObjEmail.Firstname, ObjEmail.LastName, ObjEmail.Password, ObjEmail.Address, ObjEmail.City, ObjEmail.State, Convert.ToString(ObjEmail.PostalCode), Convert.ToString(ObjEmail.MobilePhone), ObjEmail.AddressReference);
         }
+        [Then(@"Name and Address Verification")]
+        public void ThenNameAndAddressVerification()
+        {
+
+            ObjSignInPage.VerficationNameAndAddress("FirstName", ObjEmail.Firstname);
+            ObjSignInPage.VerficationNameAndAddress("LastName", ObjEmail.LastName);
+            ObjSignInPage.VerficationNameAndAddress("Address", ObjEmail.Address);
+            ObjSignInPage.VerficationNameAndAddress("City", ObjEmail.City);
+            ObjSignInPage.VerficationNameAndAddress("State", ObjEmail.State);
+            ObjSignInPage.VerficationNameAndAddress("PostalCode", Convert.ToString(ObjEmail.PostalCode));
+
+            ObjSignInPage.processAddress();
+
+        }
+
 
     }
 }

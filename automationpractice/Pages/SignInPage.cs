@@ -1,4 +1,5 @@
 ﻿using automationpractice.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
@@ -57,35 +58,40 @@ namespace automationpractice.Pages
 
         [FindsBy(How = How.Id, Using = "submitAccount")]
         public IWebElement SubmitAccount { get; set; }
+        
+        [FindsBy(How = How.XPath, Using = "//ul[@id='address_delivery']//li[@class='address_firstname address_lastname']")]
+        public IWebElement VerifyFirstNameLastName { get; set; }
+                
+        [FindsBy(How = How.XPath, Using = "//ul[@id='address_delivery']//li[@class='address_address1 address_address2']")]
+        public IWebElement VerifyAddress { get; set; }
+        
+        [FindsBy(How = How.XPath, Using = "//ul[@id='address_delivery']//li[@class='address_city address_state_name address_postcode']")]
+        public IWebElement VerifyCityStatePinCode { get; set; }
+        
+        [FindsBy(How = How.Name, Using = "processAddress")]
+        public IWebElement ProccedWithAddress { get; set; }
 
-           
+        private StringBuilder verificationErrors;
 
         public SignInPage()
         {
            PageFactory.InitElements(Generic.driver, this);
+           verificationErrors = new StringBuilder();
         }
 
         public void createAnAccount(string EmailAddress)
         {
-            try
-            {
+            
                 EnterEmailAddress.EnterText(EmailAddress);
                 CreateAccount.Clicks();
-               
-            }
-            catch (Exception)
-            {
-
-                throw new Exception();
-            }
+           
         }
 
        
         public void EnterDetailsForResgistration(String Firstname, String LastName, String PasswordText, String AddressText, String CityText, String StateText, String PostalCode, String MobilePhone, string AddressReferenceText)
             {
             
-            try
-                {   
+               
                     Title.Clicks();
                
                    Customer_Firstname.EnterText(Firstname);
@@ -100,14 +106,41 @@ namespace automationpractice.Pages
                    Phone_mobile.EnterText(MobilePhone);
                    AddressReference.EnterText(AddressReferenceText);
                    SubmitAccount.Clicks();
+            
             }
-            catch (Exception)
+
+        public void VerficationNameAndAddress(string element, string value)
+        {
+
+            try
+            {
+                
+                if (element.Equals("Firstname") || element.Equals("Lastname"))
                 {
-
-                    throw new Exception();
+                  //  Console.WriteLine("VerifyFirstNameLastName.Text =" + VerifyFirstNameLastName.Text);
+                    Assert.IsTrue(VerifyFirstNameLastName.Text.Contains(value));               
                 }
-
-
+                if (element.Equals("Address"))
+                {
+                  //  Console.WriteLine("VerifyAddress.Text = " + VerifyAddress.Text);
+                    Assert.IsTrue(VerifyAddress.Text.Contains(value));
+                }
+                if (element.Equals("City") || element.Equals("State") || element.Equals("PostalCode"))
+                {
+                  //  Console.WriteLine("VerifyCityStatePinCode.Text = " + VerifyCityStatePinCode.Text);
+                    Assert.IsTrue(VerifyCityStatePinCode.Text.Contains(value));
+                }
             }
+            catch (AssertionException)
+            {
+                verificationErrors.Append("Mismatch In "+ element +"Displayed");
+            }            
         }
+
+        public void processAddress()
+        {
+            ProccedWithAddress.Clicks();
+        }
+    }
+        
 }

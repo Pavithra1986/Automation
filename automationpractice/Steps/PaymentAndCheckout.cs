@@ -1,4 +1,5 @@
-﻿using System;
+﻿using automationpractice.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,34 +10,22 @@ namespace automationpractice.Steps
     [Binding]
     public sealed class PaymentAndCheckout
     {
-        // For additional details on SpecFlow step definitions see http://go.specflow.org/doc-stepdef
 
-        [Given("I have entered (.*) into the calculator")]
-        public void GivenIHaveEnteredSomethingIntoTheCalculator(int number)
+        ShippingPage ObjShippingPage = new ShippingPage();
+        PaymentPage ObjPaymentPage = new PaymentPage();
+
+        [Then(@"Continue With Shipping")]
+        public void ThenContinueWithShipping()
         {
-            //TODO: implement arrange (precondition) logic
-            // For storing and retrieving scenario-specific data see http://go.specflow.org/doc-sharingdata 
-            // To use the multiline text or the table argument of the scenario,
-            // additional string/Table parameters can be defined on the step definition
-            // method. 
-
-            ScenarioContext.Current.Pending();
+            ObjShippingPage.AgresstermsandCondition();
         }
 
-        [When("I press add")]
-        public void WhenIPressAdd()
+        [Then(@"Payment And Submit")]
+        public void ThenPaymentAndSubmit()
         {
-            //TODO: implement act (action) logic
-
-            ScenarioContext.Current.Pending();
+            ObjPaymentPage.SelectpaymentmethodAndSubmitOrder();
         }
 
-        [Then("the result should be (.*) on the screen")]
-        public void ThenTheResultShouldBe(int result)
-        {
-            //TODO: implement assert (verification) logic
 
-            ScenarioContext.Current.Pending();
-        }
     }
 }

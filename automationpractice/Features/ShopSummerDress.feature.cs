@@ -85,13 +85,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Navigate To Women Summer Dress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Qunatity",
+                        "Quantity",
                         "Size"});
             table1.AddRow(new string[] {
                         "2",
                         "M"});
 #line 7
- testRunner.Then("Pick a Dress And Choose Size and Qunatity", ((string)(null)), table1, "Then ");
+ testRunner.Then("Pick a Dress And Choose Size and Quantity", ((string)(null)), table1, "Then ");
 #line 10
  testRunner.Then("Add To Cart And Proceed Checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "MobilePhone",
                         "AddressReference"});
             table2.AddRow(new string[] {
-                        "Jai@gmail.com",
+                        "Pavi2@gmail.com",
                         "Mrs",
                         "Pavithra",
                         "Jai",
@@ -121,6 +121,14 @@ this.ScenarioInitialize(scenarioInfo);
                         "Pavi"});
 #line 11
  testRunner.Then("Create Account", ((string)(null)), table2, "Then ");
+#line 14
+ testRunner.Then("Name and Address Verification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+ testRunner.Then("Continue With Shipping", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.Then("Payment And Submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+ testRunner.Then("Close The Browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

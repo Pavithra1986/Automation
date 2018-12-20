@@ -40,31 +40,25 @@ namespace automationpractice.Steps
             ObjHomePage.NavigateToWomenSummerDress();
         }
 
-        [Then(@"Pick a Dress And Choose Size and Qunatity")]
+        [Then(@"Pick a Dress And Choose Size and Quantity")]
         public void ThenPickADressAndChooseSizeAndQunatity(Table table)
         {
-            try
-            {
+           
                 var data = table.CreateDynamicSet();
 
                 foreach (var item in data)
                 {
-                    Dressdetails.Qunatity = (int)item.Qunatity;
+                    Dressdetails.Quantity = (int)item.Quantity;
                     Dressdetails.Size = (string)item.Size;
 
                 }
 
-                Console.WriteLine("Dressdetails.Qunatity = " + Dressdetails.Qunatity);
-                Console.WriteLine("Dressdetails.Size =  " + Dressdetails.Size);
+                
 
                 ObjWomenDresses.SelectADress();
-                ObjWomenDresses.EnterQunatityAndSize(Convert.ToString(Dressdetails.Qunatity), Dressdetails.Size);
-            }
-            catch (Exception)
-            {
-
-                throw new Exception();
-            }
+                ObjWomenDresses.EnterQunatityAndSize(Convert.ToString(Dressdetails.Quantity), Dressdetails.Size);
+           
+            
         }
 
 
@@ -72,9 +66,17 @@ namespace automationpractice.Steps
         public void ThenAddToCartAndProceedCheckout()
         {
             ObjCheckoutPage.AddToCartandProceedToCheckout();
+            //Cart Verification
+            ObjCheckoutPage.VerifySummaryPage(Convert.ToString(Dressdetails.Quantity));
             ObjCartSummary.proceedToCheckout();
         }
 
-        
+        [Then(@"Close The Browser")]
+        public void ThenCloseTheBrowser()
+        {
+            Generic.driver.Close();
+        }
+
+
     }
 }
